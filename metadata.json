@@ -1,0 +1,6 @@
+{
+  "name": "Romantic Lotus Proposal Game",
+  "description": "An interactive romantic Hindi shayari and lotus proposal game with magical animations, personalized storytelling, and heartfelt feelings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

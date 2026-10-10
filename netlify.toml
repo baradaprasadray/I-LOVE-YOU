@@ -1,0 +1,10 @@
+# Netlify configuration file
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single Page App / Static fallback rule
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

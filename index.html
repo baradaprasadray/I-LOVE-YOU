@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romantic Lotus Proposal Game | Dil Ki Ek Pyari Dastaan 🪷❤️</title>
+    <meta
+      name="description"
+      content="Ek khoobsurat aur interactive romantic Hinglish shayari and real blooming lotus proposal game with magical animations and heartfelt feelings."
+    />
+    <meta property="og:title" content="Romantic Lotus Proposal Game | Dil Ki Ek Pyari Dastaan 🪷❤️" />
+    <meta
+      property="og:description"
+      content="Ek khoobsurat aur interactive romantic Hinglish shayari and real blooming lotus proposal game with magical animations and heartfelt feelings."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts for Elegant Romantic Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Persistent Background Canvas for Starfield, Real Lotus Petals, and Golden Light Orbs -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <!-- Ambient Moon and Distant Mountain Backdrop with Ocean Night View -->
+    <div class="sky-scenery" aria-hidden="true">
+      <div class="glowing-moon"></div>
+      <div class="mountain-silhouette back-mountain"></div>
+      <div class="mountain-silhouette front-mountain"></div>
+      <div class="water-horizon"></div>
+    </div>
+
+    <!-- Top Utility Bar (Sound Control with Toota Jo Kabhi Tara Song & Restart Option) -->
+    <header class="app-topbar">
+      <div class="brand-badge">
+        <span class="brand-lotus-icon" aria-hidden="true">🪷</span>
+        <span class="brand-title">Dil Ki Dastaan</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button
+          id="global-restart-btn"
+          class="icon-btn hidden"
+          type="button"
+          aria-label="Kahani dobara shuru karein"
+          title="Restart the Story"
+        >
+          <span aria-hidden="true">🔄</span>
+          <span class="btn-text">Shuru Se Dekho</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Application Container -->
+    <main id="app-container" class="app-main" role="main">
+
+      <!-- ==========================================
+           SCENE 1: ROMANTIC WELCOME SCREEN (HINGLISH)
+           ========================================== -->
+      <section id="scene-welcome" class="scene active-scene" aria-label="Welcome screen">
+        <div class="glass-card welcome-card">
+          <div class="card-glow" aria-hidden="true"></div>
+
+          <!-- Real Pink Lotus Emblem with Golden Aura -->
+          <div class="welcome-emblem" aria-hidden="true">
+            <div class="emblem-halo"></div>
+            <div class="emblem-lotus">
+              <svg viewBox="0 0 100 90" class="svg-lotus-emblem" fill="none">
+                <path d="M50 82 C30 82 15 65 22 45 C28 30 50 12 50 12 C50 12 72 30 78 45 C85 65 70 82 50 82 Z" fill="url(#realPetalGrad1)" opacity="0.95"/>
+                <path d="M50 82 C20 78 5 50 15 32 C23 20 45 35 50 48 C55 35 77 20 85 32 C95 50 80 78 50 82 Z" fill="url(#realPetalGrad2)" opacity="0.85"/>
+                <path d="M50 82 C35 80 28 60 38 48 C44 40 50 32 50 32 C50 32 56 40 62 48 C72 60 65 80 50 82 Z" fill="url(#realPetalGrad3)"/>
+                <circle cx="50" cy="48" r="5" fill="#ffbc42" filter="drop-shadow(0 0 8px #ffbc42)"/>
+                <defs>
+                  <linearGradient id="realPetalGrad1" x1="50" y1="12" x2="50" y2="82" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8f2d56"/>
+                    <stop offset="0.45" stop-color="#d81159"/>
+                    <stop offset="0.85" stop-color="#ff758f"/>
+                    <stop offset="1" stop-color="#fff0f5"/>
+                  </linearGradient>
+                  <linearGradient id="realPetalGrad2" x1="50" y1="20" x2="50" y2="82" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d81159"/>
+                    <stop offset="0.6" stop-color="#ff4d6d"/>
+                    <stop offset="1" stop-color="#ffe5ec"/>
+                  </linearGradient>
+                  <linearGradient id="realPetalGrad3" x1="50" y1="32" x2="50" y2="82" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ff758f"/>
+                    <stop offset="0.7" stop-color="#ffccd5"/>
+                    <stop offset="1" stop-color="#ffffff"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="floating-mini-heart" aria-hidden="true">💖</span>
+          </div>
+
+          <h1 class="welcome-title">Dil Se Likhi Gayi Ek Chhoti Si Kahani ❤️</h1>
+          <p class="welcome-subtitle">Kahani shuru karne se pehle, thoda apne baare mein batao…</p>
+
+          <!-- User Information Form in Hinglish -->
+          <form id="welcome-form" class="welcome-form" novalidate>
+            <div class="form-group">
+              <label for="user-name-input" class="form-label">Aapka pyara sa naam kya hai?</label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="user-name-input"
+                  class="text-input"
+                  placeholder="Apna pyara naam yahan likho (jaise Priya, Rahul, Simran...)"
+                  autocomplete="given-name"
+                  maxlength="36"
+                  required
+                />
+                <span class="input-accent-icon" aria-hidden="true">🪷</span>
+              </div>
+            </div>
+
+            <fieldset class="form-group">
+              <legend class="form-label">Mera dil aapko kaise pukare?</legend>
+              <div class="gender-radio-group" role="radiogroup" aria-label="Gender selection">
+                <label class="gender-option">
+                  <input type="radio" name="user-gender" value="Female" checked />
+                  <span class="gender-box">
+                    <span class="gender-icon">🌸</span>
+                    <span class="gender-title">Ladki (She)</span>
+                  </span>
+                </label>
+                <label class="gender-option">
+                  <input type="radio" name="user-gender" value="Male" />
+                  <span class="gender-box">
+                    <span class="gender-icon">🌿</span>
+                    <span class="gender-title">Ladka (He)</span>
+                  </span>
+                </label>
+                <label class="gender-option">
+                  <input type="radio" name="user-gender" value="Prefer not to say" />
+                  <span class="gender-box">
+                    <span class="gender-icon">💫</span>
+                    <span class="gender-title">Special Soul ✨</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div id="welcome-validation-msg" class="validation-msg" role="alert" aria-live="polite"></div>
+
+            <button type="submit" id="btn-enter-story" class="primary-action-btn glow-btn">
+              <span>Meri Love Story Mein Chalo ✨</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 2: THE MAGICAL LOTUS GARDEN (HINGLISH)
+           ========================================== -->
+      <section id="scene-garden" class="scene" aria-label="The Magical Lotus Garden">
+        <div class="garden-content">
+          <header class="garden-header">
+            <h2 id="garden-greeting" class="garden-greeting">Suno, Pyari Soul… 💖</h2>
+            <p class="garden-intro">Kabhi kabhi dil mein bohot kuch kehne ko hota hai, par lafz kam pad jaate hain.</p>
+            <p class="garden-instruction">Is khilte hue kamal ko touch karo aur mere dil ka ek chhota sa hissa dekho. 🪷</p>
+          </header>
+
+          <!-- Interactive Central Lotus Container -->
+          <div class="lotus-stage-wrapper">
+            <div
+              id="central-lotus-interactive"
+              class="lotus-interactive-box"
+              role="button"
+              tabindex="0"
+              aria-label="Kamal ko chhoo kar khilayein"
+            >
+              <!-- Water Ripple Effects in Deep Azure & Gold -->
+              <div class="water-ripple ripple-1" aria-hidden="true"></div>
+              <div class="water-ripple ripple-2" aria-hidden="true"></div>
+              <div class="water-ripple ripple-3" aria-hidden="true"></div>
+
+              <!-- Lily Pad Base in Deep Indigo Blue -->
+              <div class="lily-pad-base" aria-hidden="true">
+                <svg viewBox="0 0 320 120" class="svg-lily-pad">
+                  <ellipse cx="160" cy="70" rx="140" ry="38" fill="url(#lilyPadGrad)" />
+                  <path d="M160 70 L280 55 A140 38 0 0 1 290 80 Z" fill="#002d4a" opacity="0.7"/>
+                  <defs>
+                    <linearGradient id="lilyPadGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop stop-color="#006ba6"/>
+                      <stop offset="0.6" stop-color="#00466f"/>
+                      <stop offset="1" stop-color="#00253b"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <!-- Real Natural Pink & Crimson Layered Lotus Flower with Golden Torus Core -->
+              <div id="lotus-svg-container" class="lotus-blooming-flower">
+                <svg
+                  id="master-lotus-svg"
+                  viewBox="0 0 400 360"
+                  class="svg-master-lotus"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <defs>
+                    <!-- Real Lotus Outer Petal Gradient: Rich Wine & Lotus Crimson to Soft Blush Pink -->
+                    <linearGradient id="realLotusOuterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#8f2d56" />
+                      <stop offset="35%" stop-color="#d81159" />
+                      <stop offset="75%" stop-color="#ff758f" />
+                      <stop offset="100%" stop-color="#fff0f5" />
+                    </linearGradient>
+
+                    <!-- Real Lotus Mid Petal Gradient: Radiant Lotus Pink to Delicate Cream Pink -->
+                    <linearGradient id="realLotusMidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#d81159" />
+                      <stop offset="40%" stop-color="#ff4d6d" />
+                      <stop offset="80%" stop-color="#ffccd5" />
+                      <stop offset="100%" stop-color="#ffffff" />
+                    </linearGradient>
+
+                    <!-- Real Lotus Inner Petal Gradient: Soft Blush Tips to Pure Lotus Petal Silk -->
+                    <linearGradient id="realLotusInnerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#ff758f" />
+                      <stop offset="45%" stop-color="#ffccd5" />
+                      <stop offset="90%" stop-color="#fff5f8" />
+                      <stop offset="100%" stop-color="#ffffff" />
+                    </linearGradient>
+
+                    <!-- Real Lotus Core Gold Glow (Sunglow #ffbc42) -->
+                    <radialGradient id="lotusCoreGoldGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                      <stop offset="35%" stop-color="#ffbc42" stop-opacity="0.95" />
+                      <stop offset="75%" stop-color="#d81159" stop-opacity="0.4" />
+                      <stop offset="100%" stop-color="#8f2d56" stop-opacity="0" />
+                    </radialGradient>
+
+                    <filter id="bloomGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="7" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+
+                  <!-- Real Lotus Water Reflection on Azure Deep Waters -->
+                  <g class="lotus-reflection" opacity="0.35" transform="translate(0, 310) scale(1, -0.45)">
+                    <ellipse cx="200" cy="180" rx="95" ry="42" fill="#d81159" filter="url(#bloomGlowFilter)"/>
+                  </g>
+
+                  <!-- Golden Warm Aura Glow Behind Lotus -->
+                  <circle cx="200" cy="210" r="90" fill="url(#lotusCoreGoldGlow)" class="lotus-aura-glow" />
+
+                  <!-- LAYER 1: OUTER NATURAL LOTUS PETALS -->
+                  <g class="petal-layer layer-outer">
+                    <!-- Far Left Outermost Petal -->
+                    <path
+                      class="petal petal-outer-far-left"
+                      d="M200 240 C140 240, 60 210, 70 170 C78 135, 140 185, 200 240 Z"
+                      fill="url(#realLotusOuterGrad)"
+                    />
+                    <!-- Far Right Outermost Petal -->
+                    <path
+                      class="petal petal-outer-far-right"
+                      d="M200 240 C260 240, 340 210, 330 170 C322 135, 260 185, 200 240 Z"
+                      fill="url(#realLotusOuterGrad)"
+                    />
+                    <!-- Left Outer Petal -->
+                    <path
+                      class="petal petal-outer-left"
+                      d="M200 245 C150 240, 90 190, 110 140 C125 105, 170 170, 200 245 Z"
+                      fill="url(#realLotusOuterGrad)"
+                    />
+                    <!-- Right Outer Petal -->
+                    <path
+                      class="petal petal-outer-right"
+                      d="M200 245 C250 240, 310 190, 290 140 C275 105, 230 170, 200 245 Z"
+                      fill="url(#realLotusOuterGrad)"
+                    />
+                  </g>
+
+                  <!-- LAYER 2: MID-TIER NATURAL LOTUS PETALS -->
+                  <g class="petal-layer layer-mid">
+                    <!-- Mid Left Petal -->
+                    <path
+                      class="petal petal-mid-left"
+                      d="M200 245 C165 235, 120 180, 145 110 C162 65, 190 160, 200 245 Z"
+                      fill="url(#realLotusMidGrad)"
+                    />
+                    <!-- Mid Right Petal -->
+                    <path
+                      class="petal petal-mid-right"
+                      d="M200 245 C235 235, 280 180, 255 110 C238 65, 210 160, 200 245 Z"
+                      fill="url(#realLotusMidGrad)"
+                    />
+                    <!-- Outer Back Center Petal -->
+                    <path
+                      class="petal petal-mid-center"
+                      d="M200 250 C175 220, 160 130, 200 65 C240 130, 225 220, 200 250 Z"
+                      fill="url(#realLotusMidGrad)"
+                    />
+                  </g>
+
+                  <!-- LAYER 3: INNER SILK BLUSH PETALS -->
+                  <g class="petal-layer layer-inner">
+                    <!-- Inner Left Petal -->
+                    <path
+                      class="petal petal-inner-left"
+                      d="M200 250 C175 240, 150 180, 170 115 C182 75, 195 180, 200 250 Z"
+                      fill="url(#realLotusInnerGrad)"
+                    />
+                    <!-- Inner Right Petal -->
+                    <path
+                      class="petal petal-inner-right"
+                      d="M200 250 C225 240, 250 180, 230 115 C218 75, 205 180, 200 250 Z"
+                      fill="url(#realLotusInnerGrad)"
+                    />
+                    <!-- Inner Center Crown Petal -->
+                    <path
+                      class="petal petal-inner-center"
+                      d="M200 255 C185 230, 180 145, 200 95 C220 145, 215 230, 200 255 Z"
+                      fill="url(#realLotusInnerGrad)"
+                    />
+                  </g>
+
+                  <!-- LAYER 4: REAL LOTUS GOLDEN STAMEN & SUNGLOW CORE -->
+                  <g class="lotus-core">
+                    <!-- Golden filaments -->
+                    <line x1="190" y1="230" x2="182" y2="180" stroke="#ffbc42" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="196" y1="230" x2="192" y2="175" stroke="#ffe599" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="200" y1="230" x2="200" y2="172" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                    <line x1="204" y1="230" x2="208" y2="175" stroke="#ffe599" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="210" y1="230" x2="218" y2="180" stroke="#ffbc42" stroke-width="2.5" stroke-linecap="round" />
+
+                    <!-- Stamen golden anther tips (#ffbc42 & white pollen) -->
+                    <circle cx="182" cy="180" r="3.2" fill="#ffbc42" filter="url(#bloomGlowFilter)" />
+                    <circle cx="192" cy="175" r="3.6" fill="#ffd166" filter="url(#bloomGlowFilter)" />
+                    <circle cx="200" cy="172" r="4.8" fill="#ffffff" filter="url(#bloomGlowFilter)" />
+                    <circle cx="208" cy="175" r="3.6" fill="#ffd166" filter="url(#bloomGlowFilter)" />
+                    <circle cx="218" cy="180" r="3.2" fill="#ffbc42" filter="url(#bloomGlowFilter)" />
+
+                    <!-- Golden Lotus Seed Receptacle Torus -->
+                    <circle cx="200" cy="225" r="16" fill="#ffbc42" opacity="0.95" filter="url(#bloomGlowFilter)" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Interactive Click Hint in Hinglish -->
+              <div class="touch-hint-pill" id="touch-hint">
+                <span class="hint-sparkle">✨</span>
+                <span>Kamal ko chhoo kar khilao</span>
+                <span class="hint-sparkle">✨</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="garden-footer">
+            <span class="garden-hint-sub">Neeli lehron par khilta hua ek anmol kamal…</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 3: HEART-TOUCHING SHAYARI JOURNEY (HINGLISH)
+           ========================================== -->
+      <section id="scene-shayari" class="scene" aria-label="Shayari Journey">
+        <div class="shayari-stage-container">
+          <article class="glass-card shayari-card" id="active-shayari-card">
+            <div class="shayari-card-top">
+              <div class="chapter-badge">
+                <span class="badge-icon" aria-hidden="true">🪷</span>
+                <span id="shayari-chapter-counter" class="badge-text">Ehsaas 1 of 14</span>
+              </div>
+              <div class="shayari-header-ornament" aria-hidden="true">
+                <span class="floating-heart-icon">💖</span>
+              </div>
+            </div>
+
+            <!-- Lotus Mini Illustration Divider -->
+            <div class="lotus-divider" aria-hidden="true">
+              <div class="divider-line"></div>
+              <span class="divider-flower">🪷</span>
+              <div class="divider-line"></div>
+            </div>
+
+            <!-- Shayari Poetic Text Box -->
+            <div class="shayari-text-box">
+              <blockquote id="shayari-text-display" class="shayari-hindi-text">
+                <!-- Dynamically rendered shayari -->
+              </blockquote>
+              <p id="shayari-english-meaning" class="shayari-english-note">
+                <!-- Hinglish emotional explanation -->
+              </p>
+            </div>
+
+            <!-- Progress Dots Indicator -->
+            <div
+              id="shayari-progress-dots"
+              class="progress-dots"
+              role="tablist"
+              aria-label="Shayari chapters progress"
+            >
+              <!-- 14 interactive dots -->
+            </div>
+
+            <!-- Hinglish Navigation Action Buttons -->
+            <div class="shayari-card-actions">
+              <button
+                type="button"
+                id="btn-shayari-prev"
+                class="secondary-btn action-sub-btn"
+                aria-label="Pichhla ehsaas dekhein"
+              >
+                <span>← Pichhla Ehsaas</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-shayari-repeat"
+                class="secondary-btn action-sub-btn"
+                aria-label="Is ehsaas ko dobara padhein"
+              >
+                <span>Dobara Padhein 💌</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-shayari-next"
+                class="primary-action-btn next-feeling-btn glow-btn"
+                aria-label="Agla ehsaas dekhein"
+              >
+                <span id="shayari-next-label">Agla Ehsaas ❤️</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 4: PERSONAL ROMANTIC CONFESSION (HINGLISH)
+           ========================================== -->
+      <section id="scene-confession" class="scene" aria-label="Personal Romantic Confession">
+        <div class="confession-container">
+          <div class="glass-card confession-card">
+            <!-- Glowing Pink Lotus Symbol -->
+            <div class="confession-header-symbol" aria-hidden="true">
+              <div class="pulsing-lotus-aura"></div>
+              <span class="confession-lotus-emblem">🪷</span>
+            </div>
+
+            <h2 id="confession-heading" class="confession-title">Dil Ki Gehrayiyon Se Ek Sach... 💖</h2>
+
+            <!-- Progressive emotional notes sequence in Hinglish -->
+            <div class="confession-messages-wrapper" id="confession-messages-list">
+              <div class="confession-msg-item item-1">
+                <span class="confession-heart-bullet" aria-hidden="true">💖</span>
+                <p id="confession-line-1" class="confession-line-text">
+                  <strong class="user-highlight-name">[User Name]</strong>, kuch log zindagi mein aate hain aur har aam pal ko behad khaas aur yaadgar bana dete hain.
+                </p>
+              </div>
+
+              <div class="confession-msg-item item-2">
+                <span class="confession-heart-bullet" aria-hidden="true">✨</span>
+                <p class="confession-line-text">
+                  Aapki ek muskurahat poora din roshan kar deti hai, aur chhoti si baat-cheet bhi ek pyari si meethi yaad ban jaati hai.
+                </p>
+              </div>
+
+              <div class="confession-msg-item item-3">
+                <span class="confession-heart-bullet" aria-hidden="true">🌊</span>
+                <p class="confession-line-text">
+                  Shayad sabse khoobsurat jazbaat wahi hote hain jinhe lafzon mein samjhana mushkil ho, par dil se ignore karna bilkul namumkin.
+                </p>
+              </div>
+
+              <div class="confession-letter-box item-4">
+                <div class="letter-seal" aria-hidden="true">💌</div>
+                <p class="confession-letter-text">
+                  “Mujhe nahi pata aane wala kal kaisa hoga, par itna zaroor jaanta hoon ki sache jazbaat dil mein dabaye nahi rakhne chahiye. Aap mein kuch toh aisi baat hai jo shabdon mein kabhi poori tarah bayan nahi ho sakti.”
+                </p>
+              </div>
+            </div>
+
+            <div class="confession-actions">
+              <button
+                type="button"
+                id="btn-open-proposal"
+                class="primary-action-btn glow-btn open-heart-btn"
+              >
+                <span>Mera Dil Kholo 💌</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 5: THE GRAND LOVE PROPOSAL (HINGLISH)
+           ========================================== -->
+      <section id="scene-proposal" class="scene" aria-label="Grand Love Proposal">
+        <div class="proposal-container">
+          <!-- Background Radiant Pink Lotus Silhouette -->
+          <div class="proposal-radiant-lotus" aria-hidden="true">
+            <svg viewBox="0 0 200 160" class="svg-radiant-backdrop">
+              <path d="M100 140 C50 135 10 90 25 55 C40 30 80 50 100 80 C120 50 160 30 175 55 C190 90 150 135 100 140 Z" fill="#d81159" opacity="0.3" filter="blur(10px)"/>
+              <path d="M100 140 C70 120 40 80 60 40 C75 20 95 60 100 85 C105 60 125 20 140 40 C160 80 130 120 100 140 Z" fill="#ff758f" opacity="0.35" filter="blur(6px)"/>
+              <circle cx="100" cy="80" r="30" fill="#ffbc42" opacity="0.4" filter="blur(12px)"/>
+            </svg>
+          </div>
+
+          <div class="glass-card proposal-card">
+            <!-- Pulsing Beating Heart Ornament -->
+            <div class="beating-heart-box" aria-hidden="true">
+              <span class="beating-heart-symbol">💖</span>
+              <span class="heart-pulse-wave"></span>
+            </div>
+
+            <header class="proposal-header">
+              <span class="proposal-kicker">Dil Ka Ek Sabse Khaas Sawaal</span>
+              <h2 id="proposal-headline" class="proposal-title">[User Name], ek baat sachche dil se kehni hai…</h2>
+            </header>
+
+            <div class="proposal-speech-card">
+              <p class="proposal-verse">Tumse baat karna bohot achha lagta hai,</p>
+              <p class="proposal-verse">Tumhari muskurahat dil ko chhoo jaati hai,</p>
+              <p class="proposal-verse">Aur tumhara saath ek jannat jaisa ehsaas deta hai.</p>
+              <div class="proposal-divider" aria-hidden="true">🪷 ✦ 💖 ✦ 🪷</div>
+              <p id="proposal-intent-line" class="proposal-intent">Main apne dil ki baat tumse kehna chahta hoon…</p>
+
+              <blockquote id="proposal-main-question" class="proposal-big-question">
+                Kya tum meri zindagi ki khoobsurat love story ka hissa banogi? 💖🪷
+              </blockquote>
+
+              <p class="proposal-english-plea">Kya tum mere jazbaat qubool karke is love story ko ek pyara sa mauka dogi?</p>
+            </div>
+
+            <!-- Decision Action Buttons in Hinglish -->
+            <div class="proposal-decision-actions">
+              <button
+                type="button"
+                id="btn-proposal-yes"
+                class="proposal-btn accept-love-btn glow-btn"
+              >
+                <span class="btn-heart-anim" aria-hidden="true">❤️</span>
+                <span class="btn-primary-text">Haan, I Love You! ❤️</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-proposal-more-time"
+                class="proposal-btn need-time-btn"
+              >
+                <span aria-hidden="true">⏳</span>
+                <span class="btn-primary-text">Mujhe Thoda Waqt Chahiye 🌸</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 6A: CELEBRATION (ACCEPTED) (HINGLISH)
+           ========================================== -->
+      <section id="scene-accepted" class="scene" aria-label="Celebration Screen">
+        <div class="celebration-container">
+          <div class="glass-card celebration-card">
+            <div class="celebration-emblem" aria-hidden="true">
+              <div class="celebration-halo"></div>
+              <span class="celebration-lotus">🪷</span>
+              <span class="celebration-hearts">💖❤️</span>
+            </div>
+
+            <h2 class="celebration-title">Yay! Ek Khoobsurat Nayi Kahani Shuru Ho Gayi! ❤️✨</h2>
+
+            <div class="celebration-message-box">
+              <p id="celebration-custom-text" class="celebration-text">
+                <strong class="user-highlight-name">[User Name]</strong>, tumhare is jawaab ne is kahani ko lajawab bana diya. Har sachhe rishte ki shuruaat sachchai, izzat aur ek-doosre ko samajhne se hoti hai.
+              </p>
+              <div class="celebration-quote">
+                <span>Hamari Love Story Yahan Se Shuru Hoti Hai ✨</span>
+              </div>
+            </div>
+
+            <div class="celebration-actions">
+              <button
+                type="button"
+                id="btn-celebration-read-again"
+                class="primary-action-btn glow-btn"
+              >
+                <span>Hamari Shayari Phir Se Padhein 💌</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-celebration-restart"
+                class="secondary-btn restart-action-btn"
+              >
+                <span>Kahani Shuru Se Dekhein 🔄</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 6B: RESPECTFUL MORE TIME (HINGLISH)
+           ========================================== -->
+      <section id="scene-more-time" class="scene" aria-label="Respectful More Time Screen">
+        <div class="more-time-container">
+          <div class="glass-card more-time-card">
+            <div class="more-time-emblem" aria-hidden="true">
+              <span class="gentle-hourglass">⏳</span>
+              <span class="gentle-lotus">🪷</span>
+            </div>
+
+            <h2 class="more-time-title">Koi Baat Nahi, Dil Ki Baat Hai... 🌸</h2>
+
+            <div class="more-time-message-box">
+              <p class="more-time-speech">
+                “Koi baat nahi. Dil ke faisle lene mein waqt lena bilkul theek hai. Sachchi mohabbat hamesha sabr, vishwas aur izzat ka naam hai.”
+              </p>
+              <p class="more-time-subtext">
+                Yahan bilkul koi jaldi ya pressure nahi hai. Aap aaram se aur shayari padhein, ya jab dil chahe wapas proposal par aa sakte hain.
+              </p>
+            </div>
+
+            <div class="more-time-options-grid">
+              <button
+                type="button"
+                id="btn-more-time-shayari"
+                class="secondary-btn grid-action-btn"
+              >
+                <span>Ek Aur Shayari Sunao 🪷</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-more-time-confession"
+                class="secondary-btn grid-action-btn"
+              >
+                <span>Kahani Aage Badhao ✨</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-more-time-proposal"
+                class="primary-action-btn glow-btn grid-action-btn"
+              >
+                <span>Wapas Proposal Par Chalo 💌</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Vanilla Script -->
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
